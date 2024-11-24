@@ -1,22 +1,38 @@
 <template>
     <main class="centered">
-        <form method="GET" action="/" class="post-container">
-            <h1>Welcome to PostIt</h1>
-            <p>Please sign up here</p>
-            <input type="email" id="email" name="email" placeholder="Enter your email">
-            <input type="password" id="password" name="password" placeholder="Enter your password">
-            <input type="submit" class="button" value="Signup">
-        </form>
+        <div class="post-container">
+            <success-banner content="Everything is fire!!!"/>
+            <failure-banner content="Help me please!!!"/>
+            <form method="GET" action="/" class="post-container">
+                <h1>Welcome to PostIt</h1>
+                <p>Please sign up here</p>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <input type="submit" class="button" value="Signup">
+            </form>
+        </div>
     </main>
 </template>
 
 <script>
+    import FailureBanner from '@/components/messages/FailureBanner.vue';
+    import SuccessBanner from '@/components/messages/SuccessBanner.vue';
+    
     export default {
-        name: "SignupView"
+        name: "SignupView",
+        components: {
+            FailureBanner,
+            SuccessBanner
+        }
     }
 </script>
 
 <style>
+
+.centered {
+    display: block;
+}
+
 /* Styling for the text area in addPost */
 /** I'll use general sibling selector here because why not **/
 form textarea {
