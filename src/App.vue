@@ -28,6 +28,12 @@ import FooterComponent from './components/Footer.vue';
 
     --fg-light-red: rgb(244, 94, 94);
 
+    --bg-failure-banner: #2b0a0d;
+    --border-failure-banner: #db3545;
+
+    --bg-success-banner: #041a10;
+    --border-success-banner: #188653;
+
     /* Font sizes */
     --fs-base: 1rem;
     --fs-h1: calc(var(--fs-base) * 2);
