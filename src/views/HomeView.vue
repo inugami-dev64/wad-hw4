@@ -11,7 +11,7 @@
 <script>
 // @ is an alias to /src
 import Sidebar from '@/components/Sidebar.vue';
-import PostComponent from '@/components/Post.vue';
+import PostComponent from '@/components/posts/Post.vue';
 
 export default {
   name: 'HomeView',
@@ -28,7 +28,7 @@ export default {
           author: "Ruud",
           content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
           likes: 10,
-          image_path: "/WAD-HW2/img/anime-irl.jpg",
+          image_path: "anime-irl.jpg",
           comments: [
               {
                   author: "John Pork",
@@ -68,7 +68,7 @@ export default {
             author: "Ruud",
             content: "See pilt läheb väga kõvasti!",
             likes: 120,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
@@ -102,7 +102,7 @@ export default {
             author: "Ruud",
             content: "The joke is that the place is called Sneed's Feed & Seed which is clever in itself and quite funny to those with a mature sense of humour but what's really just hilarious about it is that if you look closely at the front of this store, Sneed's Feed & Seed, you can see a line that reads Formerly Chuck's. Now, this might go over the average viewer's head as this, THIS, is peak comedy. I doubt anything will ever be as funny as the joke about Sneed's Feed & Seed. Are you ready for this one? So, like I said, the place is called Sneed's Feed & Seed and this sign says Formerly Chuck's, which means that when Chuck owned the place, well, I don't have to tell you...",
             likes: 34,
-            image_path: "/WAD-HW2/img/sneed.png",
+            image_path: "sneed.png",
             comments: [
                 {
                     author: "John Pork",
@@ -122,7 +122,7 @@ export default {
             author: "Ruud",
             content: "Example post",
             likes: 34,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
@@ -142,7 +142,7 @@ export default {
             author: "Ruud",
             content: "TestPost",
             likes: 34,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
@@ -162,7 +162,7 @@ export default {
             author: "Ruud",
             content: "What am I doing?",
             likes: 34,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
@@ -182,7 +182,7 @@ export default {
             author: "Ruud",
             content: "How is it even possible?",
             likes: 34,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
@@ -202,7 +202,7 @@ export default {
             author: "Ruud",
             content: "Please try to understand this code",
             likes: 15,
-            image_path: "/WAD-HW2/img/kuva.jpg",
+            image_path: "kuva.jpg",
             comments: [
                 {
                     author: "John Pork",
