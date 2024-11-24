@@ -1,9 +1,9 @@
 <template>
     <nav>
         <div class="nav-container">
-            <a href="/">Home</a>
+            <a href="#/">Home</a>
             <span> | </span>
-            <a href="/WAD-HW2/addPost.html">Add post</a>
+            <a href="#/signup">Sign up</a>
         </div>
 
         <div class="nav-container">
