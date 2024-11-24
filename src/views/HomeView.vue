@@ -1,6 +1,6 @@
 <template>
     <main>
-      <sidebar/>
+      
       <div id="posts">
         <post-component 
           v-for="post in posts" 
@@ -9,7 +9,10 @@
           @like="increaseLike(post.id)"
         />
       </div>
-      <button class="reset-button" @click="resetLikes">Reset All Likes</button> 
+      <div>
+        <button class="reset-button" @click="resetLikes">Reset All Likes</button> 
+      </div>
+          
     </main>
   </template>
 
@@ -33,3 +36,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+
+#posts {
+  transform: translateX(65%);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+}
+</style>
+

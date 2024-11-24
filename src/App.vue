@@ -104,4 +104,24 @@ a:hover { color: var(--fg-tertiary) }
     background-color: var(--bg-secondary);
 }
 
+.reset-button {
+  position: fixed;
+  bottom: 125px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-base);
+  padding: 10px 20px;
+  background-color: var(--fg-light-red);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: auto;
+  z-index: 1000;
+}
+
+.reset-button:hover {
+  background-color: #ff7f7f;
+}
+
 </style>
