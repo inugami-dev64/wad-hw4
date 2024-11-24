@@ -45,7 +45,8 @@ import FooterComponent from './components/Footer.vue';
 body {
     margin: 0;
     padding: 0;
-}
+    background-color: var(--bg-primary);
+  }
 
 #app {
   /* App divisor contains three elements: nav, main and footer.
@@ -53,8 +54,13 @@ body {
   display: grid;
   height: 100vh;
   grid-template-rows: auto 1fr auto;
+}
+
+main {
   width: 100%;
-  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* Text element styles */
