@@ -1,5 +1,21 @@
+<script setup>
+    import { computed } from 'vue';
+    const props = defineProps({
+        postContent: Object
+    })
+
+    let imageUrl = "";
+    let thumbnailUrl = ""
+    const thumbsupUrl = require(`@/assets/user-content/img/thumbs-up.svg`)
+
+    if ('image_path' in props.postContent) {
+        imageUrl = require(`@/assets/user-content/img/${props.postContent.image_path}`);
+        thumbnailUrl = require(`@/assets/user-content/img/${props.postContent.image_path.replace(/^([A-Za-z0-9_\-]+)\.(jpg|png|gif)$/, 'thumbnails/$1_s\.$2')}`);
+    }
+</script>
+
 <template>
-    <div class="post-container" id="post-{{ postContent.id }}">
+    <div class="post-container" :id="`post-${postContent.id}`">
         <header>
             <a href="/WAD-HW2/">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" class="bi bi-person-circle profile" viewBox="0 0 16 16">
@@ -11,8 +27,8 @@
         </header>
         <div class="post-content">
             <div class="post-img-preview" v-if="'image_path' in postContent">
-                <a href="{{ postContent.image_path }}" target="_blank">
-                    <img src="{{ postContent.image_path.replace('^(\/WAD-HW\d\/img)\/([A-Za-z0-9_\-]+)\.(jpg|png|gif)$', '$1/thumbnails/$2_s\.$3') }}" alt="Image"/>
+                <a :href="imageUrl" target="_blank">
+                    <img :src="thumbnailUrl" alt="Image"/>
                 </a>
             </div>
             <div class="post-message">
@@ -21,7 +37,7 @@
         </div>
         <div class="post-stats">
             <button class="btn-transparent">
-                <img src="/WAD-HW2/img/thumbs-up.svg" alt="Like" height="32" width="32">
+                <img :src="thumbsupUrl" alt="Like" height="32" width="32">
             </button>
         </div>
     </div>
