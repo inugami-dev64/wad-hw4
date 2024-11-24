@@ -58,6 +58,7 @@ body {
 
 main {
   width: 100%;
+  padding-bottom: 90px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -97,11 +98,11 @@ a:hover { color: var(--fg-tertiary) }
     with some alignment related differences. I.e. footer is sticky while navbar is not.
     Also footer aligns it's children in the center while navbar doesn't.
  **/
- nav, footer {
-    padding: 5px 1rem;
-    display: flex;
-    align-items: center;
-    background-color: var(--bg-secondary);
+nav, footer {
+  padding: 5px 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-secondary);
 }
 
 .reset-button {
@@ -116,8 +117,7 @@ a:hover { color: var(--fg-tertiary) }
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: auto;
-  z-index: 1000;
+  z-index: 2;
 }
 
 .reset-button:hover {

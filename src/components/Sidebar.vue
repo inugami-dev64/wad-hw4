@@ -21,7 +21,7 @@
     /* Sidebar class, which just wastes 200px of your screen space for no good reason */
     .sidebar {
         width: 200px;
-        height: 100vh;
+        height: calc(100% - 1rem);
         margin: 0.5rem 0.75rem;
         border-radius: 0.5rem;
         box-sizing: border-box;
