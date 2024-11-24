@@ -1,13 +1,12 @@
 <template>
     <main class="centered">
         <div class="post-container">
-            <success-banner content="Everything is fire!!!"/>
-            <failure-banner content="Help me please!!!"/>
-            <form method="GET" action="/" class="post-container">
+            <failure-banner :content="failureMessage" v-if="failureMessage != ''" v-model="failureMessage"/>
+            <form @submit.prevent="validateAndSubmit" class="post-container">
                 <h1>Welcome to PostIt</h1>
                 <p>Please sign up here</p>
-                <input type="email" id="email" name="email" placeholder="Enter your email">
-                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <input type="email" id="email" name="email" placeholder="Enter your email" v-model="email">
+                <input type="password" id="password" name="password" placeholder="Enter your password" v-model="password">
                 <input type="submit" class="button" value="Signup">
             </form>
         </div>
@@ -15,14 +14,31 @@
 </template>
 
 <script>
-    import FailureBanner from '@/components/messages/FailureBanner.vue';
+    import FailureBanner from '@/components/messages/FailureBanner.vue'; 
     import SuccessBanner from '@/components/messages/SuccessBanner.vue';
-    
+
     export default {
+        data() {
+            return { failureMessage: "" }
+        },
         name: "SignupView",
         components: {
             FailureBanner,
-            SuccessBanner
+            SuccessBanner,
+        },
+        methods: {
+            async validateAndSubmit() {
+                if (!/^[A-Z]/.test(this.password))
+                    this.failureMessage = "Password must start with an uppercase character";
+                else if (!/[a-z]+.*?[a-z]/.test(this.password))
+                    this.failureMessage = "Password must contain at least two lowercase characters";
+                else if (!/[0-9]+/.test(this.password))
+                    this.failureMessage = "Password must contain at least one numeric character";
+                else if (!this.password.includes('_'))
+                    this.failureMessage = "Password must contain at least one '_' character";
+                else
+                    this.$router.push('/');
+            }
         }
     }
 </script>
