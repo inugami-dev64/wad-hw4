@@ -71,7 +71,7 @@
   };
   </script>
 
-<style scoped>
+<style>
     /* Post container styling */
     .post-container {
         /* Subtract sidebar vertical margins */
