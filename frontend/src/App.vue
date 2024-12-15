@@ -111,6 +111,45 @@ nav, footer {
   background-color: var(--bg-secondary);
 }
 
+.addPost-button {
+  position: fixed;
+  top: 175px;
+  left: 94%;
+  transform: translateX(-50%);
+  font-size: var(--fs-base);
+  padding: 10px 20px;
+  background-color: var(--bg-post-1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.addPost-button:hover {
+  background-color: blue;
+}
+
+.Logout-button {
+  position: fixed;
+  top: 125px;
+  left: 94%;
+  transform: translateX(-50%);
+  font-size: var(--fs-base);
+  padding: 10px 20px;
+  background-color: var(--bg-post-1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.Logout-button:hover {
+  background-color: blue;
+}
+
+
 .reset-button {
   position: fixed;
   bottom: 125px;

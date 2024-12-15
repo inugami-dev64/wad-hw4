@@ -1,5 +1,7 @@
 <template>
     <main>
+      <button class="Logout-button" @click="logOut">Logout</button>
+      <button class="addPost-button" @click="AddPost">Add post</button>
       <sidebar/>
       <div id="posts">
         <post-component 
@@ -20,6 +22,7 @@
 import Sidebar from '@/components/Sidebar.vue';
 import PostComponent from '@/components/posts/Post.vue';
 import { mapGetters, mapActions } from 'vuex';
+import AddPost from './AddPost.vue';
 
 export default {
   name: 'HomeView',

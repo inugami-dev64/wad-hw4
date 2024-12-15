@@ -4,6 +4,10 @@
             <a href="#/">Home</a>
             <span> | </span>
             <a href="#/signup">Sign up</a>
+            <span> | </span>
+            <a href="#/contacts">Contacts</a>
+            <span> | </span>
+            <a href="#/addPost">Add post</a>
         </div>
 
         <div class="nav-container">
