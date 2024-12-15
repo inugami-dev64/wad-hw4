@@ -2,6 +2,7 @@
 const express = require('express')
 const cors = require('cors')
 const Post = require('./models')
+const ErrorMessage = require('./error')
 const app = express();
 
 app.use(cors())
@@ -26,8 +27,8 @@ app.post('/api/v1/posts', (req, res) => {
     }
     catch (e) {
         console.error(e)
-        res.status(400)
-        res.end()
+        res.json(new ErrorMessage(code=400, e))
+        res.status(400).end()
     }
 });
 
@@ -44,6 +45,7 @@ app.get('/api/v1/posts/:id', (req, res) => {
     }
     catch (e) {
         console.error(e)
+        res.json(new ErrorMessage(code=400, e))
         res.status(400)
         res.end()
     }
@@ -58,6 +60,7 @@ app.patch('/api/v1/posts/:id', (req, res) => {
     }
     catch (e) {
         console.error(e)
+        res.json(new ErrorMessage(code=400, e))
         res.status(400)
         res.end()
     }
@@ -71,6 +74,7 @@ app.delete('/api/v1/posts/:id', (req, res) => {
     }
     catch (e) {
         console.error(e)
+        res.json(new ErrorMessage(code=400, e))
         res.status(400)
         res.end()
     }
