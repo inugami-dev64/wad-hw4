@@ -7,7 +7,9 @@
                 <p>Please sign up here</p>
                 <input type="email" id="email" name="email" placeholder="Enter your email" v-model="email">
                 <input type="password" id="password" name="password" placeholder="Enter your password" v-model="password">
-                <input type="submit" class="button" value="Signup">
+                <input type="submit" class="button" value="Login" @click="validateAndSubmit('login')">
+                <p>or</p>
+                <input type="submit" class="button" value="Signup" @click="validateAndSubmit('signup')">
             </form>
         </div>
     </main>
@@ -27,8 +29,9 @@
             SuccessBanner,
         },
         methods: {
-            async validateAndSubmit() {
-                if (!/^[A-Z]/.test(this.password))
+            async validateAndSubmit(action) {
+                if (action === 'signup') {
+                    if (!/^[A-Z]/.test(this.password))
                     this.failureMessage = "Password must start with an uppercase character";
                 else if (!/[a-z]+.*?[a-z]/.test(this.password))
                     this.failureMessage = "Password must contain at least two lowercase characters";
@@ -37,7 +40,15 @@
                 else if (!this.password.includes('_'))
                     this.failureMessage = "Password must contain at least one '_' character";
                 else
-                    this.$router.push('/');
+                    this.$router.push('/'); /// Should direct the user to the signupView again
+                } else if (action === 'login') {
+                    if (!this.email || !this.password) {
+                        this.failureMessage = "Email and password are required to login"
+                    } else {
+                        this.$router.push('/'); /// Should direct the user to the posts page
+                    }
+                }
+                
             }
         }
     }
