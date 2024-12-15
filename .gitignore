@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Distribution directory
 dist
+
+# Docker mounts
+volumes
