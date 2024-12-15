@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  # Postgresql container
+  postgres:
+    image: postgres:17.2-alpine3.21
+    restart: always
+    # we expose postgres' port to localhost so we could interact with it
+    # for example with dbeaver
+    ports:
+      - "127.0.0.1:3306:3306"
+    # in order to backup postgres data, let's use a volume
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dev
+      - POSTGRES_HOST=postgres
+
+  # Homework container
+  hw4:
+    build:
+      context: .
+    container_name: hw4
+    restart: always
+    volumes:
+      - ./volumes/hw4/logs:/var/log/hw4
+      - ./config:/app/config
+    ports:
+      - "127.0.0.1:9999:8080"
