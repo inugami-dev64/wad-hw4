@@ -8,9 +8,10 @@ services:
     # we expose postgres' port to localhost so we could interact with it
     # for example with dbeaver
     ports:
-      - "127.0.0.1:3306:3306"
+      - "127.0.0.1:5432:5432"
     # in order to backup postgres data, let's use a volume
     volumes:
+      - ./config/schema.sql:/docker-entrypoint-initdb.d/schema.sql
       - ./volumes/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=user
