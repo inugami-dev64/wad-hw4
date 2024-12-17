@@ -1,11 +1,12 @@
 // imports
 const express = require('express')
 const cors = require('cors')
-const { routePosts } = require('./api/v1/posts')
+const cookieParser = require('cookie-parser')
 const app = express();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors({ 'origin': process.env.HOST || 'http://localhost:1337', credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
 
 // subrouter for posts CRUD
 app.use('/api/v1/posts', require('./api/v1/posts'));

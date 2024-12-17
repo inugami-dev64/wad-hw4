@@ -26,6 +26,7 @@ services:
     container_name: hw4
     environment:
       - POSTGRES_HOST=postgres
+      - HOST=http://localhost:9999
     restart: always
     volumes:
       - ./volumes/hw4/logs:/var/log/hw4
