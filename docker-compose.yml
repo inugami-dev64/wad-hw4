@@ -11,7 +11,7 @@ services:
       - "127.0.0.1:5432:5432"
     # in order to backup postgres data, let's use a volume
     volumes:
-      - ./config/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./volumes/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=user
@@ -24,6 +24,8 @@ services:
     build:
       context: .
     container_name: hw4
+    environment:
+      - POSTGRES_HOST=postgres
     restart: always
     volumes:
       - ./volumes/hw4/logs:/var/log/hw4
