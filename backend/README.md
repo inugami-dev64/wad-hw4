@@ -20,10 +20,40 @@ Errors are defined in server's `error.js` file and they can be any of the follow
 * 1 - `not found`
 * 2 - `not authorized`
 * 3 - `persistence error`
+* 4 - `invalid email`
+* 5 - `invalid password`
+* 6 - `email is already in use`
+
+## Authentication
+
+Authentication consists of 2 endpoints `/api/v1/auth/login` and `/api/v1/auth/register`. Both of these endpoints produce a cookie called `jwt`, which provides the session token.
+
+### Logging in
+Example request json:
+```json
+{
+    "email": "john.doe@example.com",
+    "password": "Password123"
+}
+```
+
+Possible errors: `invalid email`, `invalid password`
+
+### Registering a new user
+
+Example request json:
+```json
+{
+    "email": "john.doe@example.com",
+    "password": "Password123"
+}
+```
+
+Possible errors: `email is already in use`
 
 ## Post CRUD API
 
-Post CRUD API provides CRUD functionality for posts. It's pretty straight forward. The main entity that we is the `Post` class from `models.js`.
+Post CRUD API provides CRUD functionality for posts. It's pretty straight forward. The main entity that we user the `Post` class from `entity/post.js`. All Post CRUD operations are guarded with authentication middleware, meaning that you need to have a valid JWT token in order to access these CRUD resources.
 
 An example json representation looks something like this:
 ```json
