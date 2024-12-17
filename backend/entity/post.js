@@ -1,5 +1,5 @@
-const { ERROR_CODES } = require("./error");
-const { pool } = require('./database')
+const { ERROR_CODES } = require("../error");
+const { pool } = require('../database')
 
 
 class Post {
