@@ -26,4 +26,4 @@ WORKDIR /app/hw4
 # Install backend dependencies
 RUN npm install
 
-ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/usr/bin/entrypoint.sh" ]
