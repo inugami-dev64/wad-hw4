@@ -74,7 +74,7 @@ Possible errors: `not found`
 ### Updating a post
 
 Example request:
-```json
+```
 PATCH /api/v1/posts/:id
 ```
 where `:id` represents the ID of the post to update.
