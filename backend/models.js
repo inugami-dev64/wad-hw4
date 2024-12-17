@@ -1,3 +1,5 @@
+const { ERROR_CODES } = require("./error");
+
 class Post {
     constructor(id=null, userId=null, body=null, likesCount=null, editedAt=null, createdAt=null) {
         this.id = id;
@@ -95,7 +97,7 @@ class Post {
     static getById(id) {
         let filteredPosts = this.posts.filter((p) => p.id == id)
         if (filteredPosts.length == 0) {
-            throw "not found";
+            throw ERROR_CODES.NotFound;
         }
         return filteredPosts[0];
     }
@@ -107,16 +109,16 @@ class Post {
 
     // adds a post
     static addPost(post) {
-        post.id = this.posts.length > 0 ? this.posts[this.posts.length - 1] + 1 : 1;
+        post.id = this.posts.length > 0 ? this.posts[this.posts.length - 1].id + 1 : 1;
         this.posts.push(post)
         return post
     }
 
     // updates a post
-    static update(post) {
-        let filteredPosts = this.posts.filter((v) => v.id == post.id)
+    static update(id, post) {
+        let filteredPosts = this.posts.filter((v) => v.id == id)
         if (filteredPosts.length == 0)
-            throw "not found";
+            throw ERROR_CODES.NotFound;
 
         // perform the update
         if (post.body !== null)
@@ -126,11 +128,11 @@ class Post {
 
     // deletes a post
     static delete(post) {
-        deletedPosts = this.posts.filter(this.posts.filter((p) => p.id == post.id))
-        if (deletedPost.length == 0)
-            throw "not found";
+        let deletedPosts = this.posts.filter((p) => p.id == post.id);
+        if (deletedPosts.length == 0)
+            throw ERROR_CODES.NotFound;
         this.posts = this.posts.filter((p) => p.id != post.id);
-        return deletedPost[0];
+        return deletedPosts[0];
     }
 
     // deletes all posts
@@ -141,4 +143,4 @@ class Post {
     }
 }
 
-module.exports = Post;
+module.exports = { Post };
