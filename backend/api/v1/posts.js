@@ -1,4 +1,4 @@
-const { Post } = require('../../models')
+const { Post } = require('../../entity/post')
 const { HttpError } = require('../../error')
 
 // Creates a new post from user's request
