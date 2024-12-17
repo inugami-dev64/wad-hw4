@@ -40,15 +40,18 @@ class User {
     }
 
     static async createUser(user) {
-        const newUser = await pool.query(
-            // we don't want to return the password hash
-            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING (id,email,created_at)",
-            [post.email, post.password]
-        );
+        try {
+            const newUser = await pool.query(
+                // we don't want to return the password hash
+                "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id,email,created_at",
+                [user.email, user.password]
+            );
 
-        if (newUser.rows.length == 0)
-            throw new ERROR_CODES.EmailAlreadyExists;
-        return new User(newUser.rows[0].id, newUser.rows[0].email, null, newUser.rows[0].created_at);
+            return new User(newUser.rows[0].id, newUser.rows[0].email, null, newUser.rows[0].created_at);
+        }
+        catch (e) {
+            throw ERROR_CODES.EmailAlreadyExists;
+        }
     }
 }
 
