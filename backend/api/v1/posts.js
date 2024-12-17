@@ -1,5 +1,6 @@
 const { Post } = require('../../entity/post')
 const { HttpError } = require('../../error')
+const { jwtAuthenticationMiddleware } = require('../../jwt')
 
 // Creates a new post from user's request
 async function createPost(req, res) {
@@ -89,11 +90,11 @@ async function deleteAll(req, res) {
 }
 
 let router = require('express').Router();
-router.post('', createPost);
-router.get('', getAllPosts);
-router.get('/:id', getPostById);
-router.patch('/:id', updatePost);
-router.delete('/:id', deletePost);
-router.delete('', deleteAll);
+router.post('', jwtAuthenticationMiddleware, createPost);
+router.get('', jwtAuthenticationMiddleware, getAllPosts);
+router.get('/:id', jwtAuthenticationMiddleware, getPostById);
+router.patch('/:id', jwtAuthenticationMiddleware, updatePost);
+router.delete('/:id', jwtAuthenticationMiddleware, deletePost);
+router.delete('', jwtAuthenticationMiddleware, deleteAll);
 
 module.exports = router;
