@@ -10,7 +10,8 @@ class HttpError {
 const ERROR_CODES = {
     Success: [0, 'success'],
     NotFound: [1, 'not found'],
-    NotAuthorized: [2, 'not authorized'] 
+    NotAuthorized: [2, 'not authorized'],
+    PersistenceError: [3, 'persistence error']
 }
 
 module.exports = { HttpError, ERROR_CODES };

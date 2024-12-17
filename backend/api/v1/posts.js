@@ -2,7 +2,7 @@ const { Post } = require('../../models')
 const { HttpError } = require('../../error')
 
 // Creates a new post from user's request
-function createPost(req, res) {
+async function createPost(req, res) {
     try {
         const json = req.body;
         console.log("POST /api/v1/posts: Post creation request received")
@@ -15,7 +15,8 @@ function createPost(req, res) {
             createdAt=Date.now()
         )
 
-        res.json(Post.addPost(post))
+        const newPost = await Post.addPost(post);
+        res.json(newPost)
     }
     catch (e) {
         console.error(e[1])
@@ -25,17 +26,19 @@ function createPost(req, res) {
 }
 
 // gets all posts from the persistence layer
-function getAllPosts(req, res) {
+async function getAllPosts(req, res) {
     console.log("GET /api/v1/posts: Fetching all posts")
-    res.json(Post.getAllPosts())
+    let posts = await Post.getAllPosts();
+    res.json(posts)
 }
 
 // gets a post that is specified with given ID
-function getPostById(req, res) {
+async function getPostById(req, res) {
     try {
         const { id } = req.params
         console.log("GET /api/v1/posts/:id: Fetching a post with ID " + id)
-        res.json(Post.getById(id))
+        const post = await Post.getById(id)
+        res.json(post)
     }
     catch (e) {
         console.error(e[1])
@@ -46,13 +49,13 @@ function getPostById(req, res) {
 }
 
 // updates a post that was specified with given ID
-function updatePost(req, res) {
+async function updatePost(req, res) {
     try {
         const { id } = req.params
         console.log("PATCH /api/v1/posts/:id: Updating a post with ID " + id)
         let json = req.body
-        json['id'] = id;
-        res.json(Post.update(json))
+        const updatedPost = await Post.update(id, json)
+        res.json(updatedPost)
     }
     catch (e) {
         console.error(e[1])
@@ -63,11 +66,12 @@ function updatePost(req, res) {
 }
 
 // deletes a post that was specified with given ID
-function deletePost(req, res) {
+async function deletePost(req, res) {
     try {
         const { id } = req.params
         console.log("DELETE /api/v1/posts/:id: Deleting a post with ID " + id)
-        res.json(Post.delete(new Post(id)))
+        const deletedPost = await Post.delete(new Post(id))
+        res.json(deletedPost)
     }
     catch (e) {
         console.error(e[1])
@@ -78,9 +82,10 @@ function deletePost(req, res) {
 }
 
 // delete all posts
-function deleteAll(req, res) {
+async function deleteAll(req, res) {
     console.log("DELETE /api/v1/posts: Deleting all posts")
-    res.json(Post.deleteAll());
+    const deletedPosts = await Post.deleteAll();
+    res.json(deletedPosts);
 }
 
 let router = require('express').Router();
