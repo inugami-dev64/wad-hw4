@@ -15,7 +15,7 @@ RUN npm run build
 
 FROM node:23.4.0-alpine3.20 AS hw4
 
-RUN apk add supervisor nginx
+RUN apk --no-cache add supervisor nginx --virtual build-deps build-base python3
 
 COPY ./backend /app/hw4
 COPY --from=frontend_builder /app/frontend/dist /app/static
@@ -27,5 +27,8 @@ WORKDIR /app/hw4
 
 # Install backend dependencies
 RUN npm install
+
+# Force recompile bcrypt from source
+RUN npm rebuild bcrypt --build-from-source
 
 ENTRYPOINT [ "sh", "/usr/bin/entrypoint.sh" ]
