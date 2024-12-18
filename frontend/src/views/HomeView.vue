@@ -1,7 +1,7 @@
 <template>
     <main>
       <button class="Logout-button" @click="logOut">Logout</button>
-      <button class="addPost-button" @click="AddPost">Add post</button>
+      <button class="addPost-button" @click="addPost">Add post</button>
       <sidebar/>
       <failure-banner :content="failureMessage" v-if="failureMessage != ''" v-model="failureMessage"/>
       <div id="posts">
@@ -23,8 +23,10 @@
 import Sidebar from '@/components/Sidebar.vue';
 import PostComponent from '@/components/posts/Post.vue';
 import { mapGetters, mapActions } from 'vuex';
-import AddPost from './AddPost.vue';
 import FailureBanner from '@/components/messages/FailureBanner.vue';
+import Vue from 'vue'
+import VueCookies from 'vue-cookie'
+import { inject } from 'vue';
 
 export default {
   name: 'HomeView',
@@ -60,6 +62,16 @@ export default {
           console.log(err.message)
           this.failureMessage = "Server error";
         })
+    },
+    logOut() {
+      // invalidates the cookie
+      console.log("logout request received");
+      document.cookie = 'jwt=';
+      console.log("Cleared cookies: ", document.cookie)
+      this.$router.push('/login');
+    },
+    addPost() {
+      this.$router.push('/addPost')
     }
   },
   mounted() {

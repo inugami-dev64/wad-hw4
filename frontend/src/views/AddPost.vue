@@ -3,6 +3,7 @@
        
       <!-- Main Content -->
       <main class="centered">
+        <failure-banner :content="failureMessage" v-if="failureMessage != ''" v-model="failureMessage"/>
         <form @submit.prevent="createPost" class="post-container">
           <label for="textArea">Post body</label>
           <textarea id="textArea" v-model="postContent" rows="4" placeholder="Your message"></textarea>
@@ -14,6 +15,8 @@
   </template>
   
   <script>
+  import FailureBanner from '@/components/messages/FailureBanner.vue';
+
   export default {
     data() {
       return {
@@ -21,8 +24,12 @@
         selectedFile: null,
         dropdownVisible: false,
         username: '',
-        email: ''
+        email: '',
+        failureMessage: ''
       };
+    },
+    components: {
+      FailureBanner
     },
     created() {
       // Get info from localStorage when component is created
@@ -33,12 +40,6 @@
       toggleDropdown() {
         this.dropdownVisible = !this.dropdownVisible;
       },
-      logout() {
-        // Clear info from localStorage and redirect to login page
-        localStorage.removeItem("username");
-        localStorage.removeItem("email");
-        this.$router.push('/login'); // Assuming you're using Vue Router
-      },
       handleFileChange(event) {
         this.selectedFile = event.target.files[0];
       },
@@ -48,10 +49,30 @@
           alert("Please enter some content for the post.");
           return;
         }
-        // Example: You can send the postContent and selectedFile to a server or handle it here
-        console.log("Post created:", this.postContent, this.selectedFile);
+
+        const host = process.env.BACKEND_HOST || 'http://localhost:1337';
+        fetch(`${host}/api/v1/posts`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: 'include',
+          body: JSON.stringify({ body: this.postContent.trim() })
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if ('code' in data) {
+              console.log("Please authenticate yourself first");
+              this.$router.push('/login');
+              return
+            }
+            console.log("Post created successfully")
+            this.$router.push('/')
+          })
+          .catch((err) => {
+            console.log(err.message);
+            this.failureMessage = "Server error"
+          })
       }
-    }
+    },
   };
   </script>
   
