@@ -18,6 +18,7 @@
         color: var(--fg-primary);
         border-radius: 0.5rem;
         width: 100%;
+        height: fit-content;
         box-sizing: border-box;
         text-align: center;
     }
