@@ -30,7 +30,7 @@ import FailureBanner from '@/components/messages/FailureBanner.vue';
         },
         methods: {
             async login() {
-                const host = process.env.BACKEND_HOST || 'http://localhost:1337'
+                const host = process.env.VUE_APP_BACKEND_HOST || 'http://localhost:1337'
                 const body = { email: this.$refs.form.email, password: this.$refs.form.password };
                 fetch(`${host}/api/v1/auth/login`, {
                     method: "POST",

@@ -5,7 +5,7 @@ COPY ./frontend /app/frontend
 
 WORKDIR /app/frontend
 
-ENV BACKEND_HOST=http://localhost:9999
+ENV VUE_APP_BACKEND_HOST=http://localhost:9999
 
 # Install dependencies
 RUN npm install

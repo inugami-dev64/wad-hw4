@@ -45,7 +45,7 @@ export default {
   methods: {
     ...mapActions(['increaseLike', 'resetLikes']),
     fetchPosts() {
-      const host = process.env.BACKEND_HOST || 'http://localhost:1337';
+      const host = process.env.VUE_APP_BACKEND_HOST || 'http://localhost:1337';
       fetch(`${host}/api/v1/posts`, { credentials: 'include' })
         .then((res) => res.json())
         .then((data) => {

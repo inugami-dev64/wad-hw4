@@ -50,7 +50,7 @@
           return;
         }
 
-        const host = process.env.BACKEND_HOST || 'http://localhost:1337';
+        const host = process.env.VUE_APP_BACKEND_HOST || 'http://localhost:1337';
         fetch(`${host}/api/v1/posts`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
