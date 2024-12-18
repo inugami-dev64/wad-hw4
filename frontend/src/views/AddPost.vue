@@ -58,7 +58,10 @@
   <style scoped>
   /* Your existing CSS styles here */
   .centered {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
   }
   
   form textarea {
