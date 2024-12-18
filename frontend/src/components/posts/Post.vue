@@ -32,14 +32,14 @@
           </a>
         </div>
         <div class="post-message">
-          <p>{{ postContent.content }}</p>
+          <p>{{ postContent.body }}</p>
         </div>
       </div>
       <div class="post-stats">
         <button class="btn-transparent" @click="likePost">
           <img :src="thumbsupUrl" alt="Like" height="32" width="32">
         </button>
-        <span>{{ postContent.likes }} Likes</span>
+        <span>{{ postContent.likesCount }} Likes</span>
       </div>
     </div>
   </template>
