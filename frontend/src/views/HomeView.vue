@@ -24,9 +24,7 @@ import Sidebar from '@/components/Sidebar.vue';
 import PostComponent from '@/components/posts/Post.vue';
 import { mapGetters, mapActions } from 'vuex';
 import FailureBanner from '@/components/messages/FailureBanner.vue';
-import Vue from 'vue'
-import VueCookies from 'vue-cookie'
-import { inject } from 'vue';
+import VueCookies from 'vue-cookies'
 
 export default {
   name: 'HomeView',
@@ -66,8 +64,8 @@ export default {
     logOut() {
       // invalidates the cookie
       console.log("logout request received");
-      document.cookie = 'jwt=';
-      console.log("Cleared cookies: ", document.cookie)
+      VueCookies.remove('jwt')
+      console.log("Cleared cookies: ", VueCookies.get('jwt'))
       this.$router.push('/login');
     },
     addPost() {
