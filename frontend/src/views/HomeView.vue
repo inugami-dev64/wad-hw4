@@ -50,8 +50,8 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           if ('code' in data) {
-            console.log("Please authenticate first")
-            this.$router.push('/authenticate')
+            console.log("Please authenticate yourself first")
+            this.$router.push('/login')
             return
           }
           this.posts = data;

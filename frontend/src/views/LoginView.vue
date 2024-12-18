@@ -4,11 +4,11 @@
             <failure-banner :content="failureMessage" v-if="failureMessage != ''" v-model="failureMessage"/>
             <auth-form 
                 ref="form"
-                :message="'Please register to continue'" 
-                :actionName="'Register'" 
-                :actionCallback="register"
-                :alternativeActionURL="'/#login'"
-                :alternativeActionName="'Login instead'"/>
+                :message="'Please login to continue'" 
+                :actionName="'Login'" 
+                :actionCallback="login"
+                :alternativeActionURL="'/#signup'"
+                :alternativeActionName="'Sign up instead'"/>
         </div>
     </main>
 </template>
@@ -29,21 +29,21 @@ import FailureBanner from '@/components/messages/FailureBanner.vue';
             AuthForm
         },
         methods: {
-            async register() {
-                const host = process.env.BACKEND_HOST || 'http://localhost:1337';
+            async login() {
+                const host = process.env.BACKEND_HOST || 'http://localhost:1337'
                 const body = { email: this.$refs.form.email, password: this.$refs.form.password };
-                fetch(`${host}/api/v1/auth/register`, {
+                fetch(`${host}/api/v1/auth/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     credentials: 'include',
-                    body: JSON.stringify(form)
+                    body: JSON.stringify(body)
                 })
                     .then((resp) => resp.json())
                     .then((data) => {
                         if ('code' in data) {
-                            this.failureMessage = data.msg[0].toUppercase() + data.msg.slice(1);
+                            this.failureMessage = data.msg[0].toUpperCase() + data.msg.slice(1);
                             return;
                         }
                         location.assign("/");
