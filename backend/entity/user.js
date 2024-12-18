@@ -16,7 +16,7 @@ class User {
         )
         if (user.rows.length == 0)
             throw ERROR_CODES.NotFound;
-        return new User(user.rows[0].id, user.rows[0].email, user.rows[0].created_at);
+        return new User(user.rows[0].id, user.rows[0].email, user.rows[0].password, user.rows[0].created_at);
     }
 
     static async getByEmail(email) {
@@ -27,7 +27,7 @@ class User {
 
         if (user.rows.length == 0)
             throw ERROR_CODES.InvalidEmail;
-        return new User(user.rows[0].id, user.rows[0].email, user.rows[0].created_at);
+        return new User(user.rows[0].id, user.rows[0].email, user.rows[0].password, user.rows[0].created_at);
     }
 
     static async isEmailInUse(email) {

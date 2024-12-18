@@ -16,7 +16,7 @@ CREATE TABLE posts (
 );
 
 -- Create a default admin user
-INSERT INTO users (email, password) VALUES ('admin@example.org', 'Password123');
+INSERT INTO users (email, password) VALUES ('admin@example.org', '$2b$10$Zs2Hf4VoNc14G4a405mLlua68PVCFcL.47HddN0WlPfm8lFGVE2wG');
 
 -- Insert some posts
 INSERT INTO posts (user_id, body, likes_count) VALUES
